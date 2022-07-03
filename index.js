@@ -151,11 +151,18 @@ setInterval(() => {
     let now = performance.now();
     let elapsed = (now - lastIntervalTime) / 1000;
 
-    if (instrsRan > 0)
-        console.log("Instrs per second: " + Math.round(instrsRan / elapsed));
+    if (instrsRan > 0) {
+        let str = "Instrs per second: " + Math.round(instrsRan / elapsed);
+        console.log(str);
+        document.querySelector("#instrs-per-second").textContent = str;
+    }
     instrsRan = 0;
     lastIntervalTime = now;
 }, 1000);
+
+document.querySelector("#unpause-button").onclick = () => {
+ paused = false;
+}
 
 document.querySelector('#run-and-log-button').onclick = () => {
     let instrsToRun = document.querySelector('#run-instrs').value;
